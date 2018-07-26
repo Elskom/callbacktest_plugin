@@ -16,24 +16,14 @@ namespace callbacktest_plugin
 
         private void CheckBox1_CheckedChanged(object sender, System.EventArgs e)
         {
-            if (CheckBox1.Checked == true)
-            {
-                callbacksetting1_temp = 1;
-            }
-            else if (callbacksetting1_temp > 0)
-            {
-                callbacksetting1_temp = 0;
-            }
+            callbacksetting1_temp = CheckBox1.Checked ? 1 : callbacksetting1_temp > 0 ? 0 : callbacksetting1_temp;
         }
 
         private void CallbacktestForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
             Els_kom_Core.Classes.SettingsFile.Settingsxml.ReopenFile();
-            if (callbacksetting1 != callbacksetting1_temp)
-            {
-                callbacksetting1 = callbacksetting1_temp;
-                Els_kom_Core.Classes.SettingsFile.Settingsxml.Write("ShowTestMessages", callbacksetting1.ToString());
-            }
+            callbacksetting1 = callbacksetting1 != callbacksetting1_temp ? callbacksetting1_temp : callbacksetting1;
+            Els_kom_Core.Classes.SettingsFile.Settingsxml.Write("ShowTestMessages", callbacksetting1.ToString());
             Els_kom_Core.Classes.SettingsFile.Settingsxml.Save();
         }
 
@@ -43,10 +33,8 @@ namespace callbacktest_plugin
             callbacksetting1_temp = 0;
             Els_kom_Core.Classes.SettingsFile.Settingsxml.ReopenFile();
             int.TryParse(Els_kom_Core.Classes.SettingsFile.Settingsxml.Read("ShowTestMessages"), out callbacksetting1);
-            if (callbacksetting1 > 0)
-            {
-                CheckBox1.Checked = true;
-            }
+            // set to true if callbacksetting1 > 0 is evaluated to true.
+            CheckBox1.Checked = callbacksetting1 > 0;
         }
     }
 }
