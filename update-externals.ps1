@@ -3,9 +3,9 @@ $env:elskomnewpth = Join-Path (Get-Location) Els_kom_new
 if(!(Test-Path -Path $env:elskomnewpth))
 {
     git clone -q https://github.com/Elskom/Els_kom_new.git
-    Set-Location -Path Els_kom_new
-    cmake ..
-    Set-Location -Path ../..
+    Set-Location -Path Els_kom_new/externals
+    git clone -q https://github.com/Elskom/ZLIB.NET.git
+    Set-Location -Path ../../..
 }
 else
 {
