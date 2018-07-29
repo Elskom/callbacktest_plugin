@@ -1,0 +1,54 @@
+version: 1.0.0.0a{build}
+branches:
+  except:
+  - next
+skip_commits:
+  files:
+    - '**/*.md'
+max_jobs: 15
+image:
+- Visual Studio 2017
+- Visual Studio 2017 Preview
+configuration: Release
+platform:
+- x86
+- x64
+cache: externals/Els_kom_new
+before_build:
+- ps: ./update-externals.ps1
+build:
+  project: callbacktest_plugin.sln
+  parallel: true
+  verbosity: minimal
+# after_build:
+# - cmd: ./package-release.cmd
+test: off
+artifacts:
+# - path: bin/$(platform)/$(configuration)/*.zip
+- path: bin/$(platform)/$(configuration)/*.*
+  name: myartifact
+before_deploy:
+- ps: ./appveyor-deploy.ps1
+deploy:
+- provider: GitHub
+  release: $(APPVEYOR_REPO_TAG_NAME)
+  description: '$(APPVEYOR_REPO_COMMIT_MESSAGE) - $(APPVEYOR_REPO_BRANCH)'
+  auth_token:
+    secure: oHqKZpK6huL4v9LT6ifeFb/MA3vI1NRlN66jP+qbI7DiGhV0ZF3L7xmTeJR+OEFG
+#   repository: Elskom/Els_kom_builds
+  artifact: myartifact
+  prerelease: false
+  force_update: true
+  on:
+    APPVEYOR_REPO_TAG: true
+- provider: GitHub
+  release: $(APPVEYOR_REPO_TAG_NAME)
+  description: '$(APPVEYOR_REPO_COMMIT_MESSAGE) - $(APPVEYOR_REPO_BRANCH)'
+  auth_token:
+    secure: oHqKZpK6huL4v9LT6ifeFb/MA3vI1NRlN66jP+qbI7DiGhV0ZF3L7xmTeJR+OEFG
+#   repository: Elskom/Els_kom_builds
+  artifact: myartifact
+  prerelease: true
+  force_update: true
+  on:
+    APPVEYOR_REPO_TAG: false
