@@ -4,7 +4,7 @@
   <Import Project="$(SolutionDir)\plugins.props" Condition="Exists('$(SolutionDir)\plugins.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{28A5F834-F7F6-43C0-9CB4-196DCE79EFDB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
