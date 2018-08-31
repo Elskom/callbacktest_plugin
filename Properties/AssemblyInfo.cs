@@ -3,6 +3,7 @@
 // All rights reserved.
 // license: MIT, see LICENSE for more details.
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
