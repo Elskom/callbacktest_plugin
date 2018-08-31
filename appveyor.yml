@@ -10,9 +10,7 @@ image:
 - Visual Studio 2017
 - Visual Studio 2017 Preview
 configuration: Release
-platform:
-- x86
-- x64
+platform: Any CPU
 cache: externals/Els_kom_new
 before_build:
 - ps: ./update-externals.ps1
@@ -20,12 +18,9 @@ build:
   project: callbacktest_plugin.sln
   parallel: true
   verbosity: minimal
-# after_build:
-# - cmd: ./package-release.cmd
 test: off
 artifacts:
-# - path: bin/$(platform)/$(configuration)/*.zip
-- path: bin/$(platform)/$(configuration)/*.*
+- path: bin/$(configuration)/*.*
   name: myartifact
 before_deploy:
 - ps: ./appveyor-deploy.ps1
