@@ -1,4 +1,5 @@
-version: 1.0.0.0a{build}
+version: 1.0.0.{build}
+skip_tags: true
 branches:
   except:
   - next
@@ -38,17 +39,6 @@ deploy:
 #   repository: Elskom/Els_kom_builds
   artifact: myartifact
   prerelease: false
-  force_update: true
-  on:
-    APPVEYOR_REPO_TAG: true
-- provider: GitHub
-  release: $(APPVEYOR_REPO_TAG_NAME)
-  description: '$(APPVEYOR_REPO_COMMIT_MESSAGE) - $(APPVEYOR_REPO_BRANCH)'
-  auth_token:
-    secure: oHqKZpK6huL4v9LT6ifeFb/MA3vI1NRlN66jP+qbI7DiGhV0ZF3L7xmTeJR+OEFG
-#   repository: Elskom/Els_kom_builds
-  artifact: myartifact
-  prerelease: true
   force_update: true
   on:
     APPVEYOR_REPO_TAG: false
