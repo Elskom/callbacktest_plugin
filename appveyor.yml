@@ -26,7 +26,7 @@ build:
   verbosity: minimal
 test: off
 artifacts:
-- path: bin/$(configuration)/plugins/*.*
+- path: bin/$(configuration)/plugins/*.plugin.*
   name: myartifact
 before_deploy:
 - ps: ./appveyor-deploy.ps1
