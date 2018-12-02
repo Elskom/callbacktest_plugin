@@ -7,7 +7,7 @@ namespace callbacktest_plugin
 {
     using System;
     using System.Windows.Forms;
-    using Els_kom_Core.Classes;
+    using Elskom.Generic.Libs;
 
     public partial class CallbacktestForm : Form
     {

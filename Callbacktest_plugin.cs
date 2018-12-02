@@ -6,8 +6,8 @@
 namespace callbacktest_plugin
 {
     using System.Windows.Forms;
-    using Els_kom_Core.Classes;
     using Els_kom_Core.Interfaces;
+    using Elskom.Generic.Libs;
 
     public class Callbacktest_plugin : ICallbackPlugin
     {
