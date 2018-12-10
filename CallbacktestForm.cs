@@ -11,45 +11,47 @@ namespace callbacktest_plugin
 
     public partial class CallbacktestForm : Form
     {
-        public CallbacktestForm() => InitializeComponent();
-        internal int callbacksetting1;
-        internal int callbacksetting1_temp;
+        private int callbacksetting1;
+        private int callbacksetting1Temp;
+
+        public CallbacktestForm() => this.InitializeComponent();
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (CheckBox1.Checked == true)
+            if (this.CheckBox1.Checked == true)
             {
-                callbacksetting1_temp = 1;
+                this.callbacksetting1Temp = 1;
             }
-            else if (callbacksetting1_temp > 0)
+            else if (this.callbacksetting1Temp > 0)
             {
-                callbacksetting1_temp = 0;
+                this.callbacksetting1Temp = 0;
             }
         }
 
         private void CallbacktestForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             SettingsFile.Settingsxml.ReopenFile();
-            if (callbacksetting1 != callbacksetting1_temp)
+            if (this.callbacksetting1 != this.callbacksetting1Temp)
             {
-                callbacksetting1 = callbacksetting1_temp;
-                SettingsFile.Settingsxml.Write("ShowTestMessages", callbacksetting1.ToString());
+                this.callbacksetting1 = this.callbacksetting1Temp;
+                SettingsFile.Settingsxml.Write("ShowTestMessages", this.callbacksetting1.ToString());
             }
+
             SettingsFile.Settingsxml.Save();
         }
 
         private void CallbacktestForm_Load(object sender, EventArgs e)
         {
-            callbacksetting1 = 0;
-            callbacksetting1_temp = 0;
+            this.callbacksetting1 = 0;
+            this.callbacksetting1Temp = 0;
             SettingsFile.Settingsxml.ReopenFile();
-            int.TryParse(SettingsFile.Settingsxml.Read("ShowTestMessages"), out callbacksetting1);
-            if (callbacksetting1 > 0)
+            int.TryParse(SettingsFile.Settingsxml.Read("ShowTestMessages"), out this.callbacksetting1);
+            if (this.callbacksetting1 > 0)
             {
-                CheckBox1.Checked = true;
+                this.CheckBox1.Checked = true;
             }
         }
 
-        private void Label1_Click(object sender, EventArgs e) => CheckBox1.Checked = CheckBox1.Checked ? false : true;
+        private void Label1_Click(object sender, EventArgs e) => this.CheckBox1.Checked = this.CheckBox1.Checked ? false : true;
     }
 }

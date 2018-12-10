@@ -6,16 +6,23 @@
 namespace callbacktest_plugin
 {
     using System.Windows.Forms;
-    using Els_kom_Core.Interfaces;
     using Elskom.Generic.Libs;
 
     public class Callbacktest_plugin : ICallbackPlugin
     {
+        /// <inheritdoc/>
         public string PluginName => "Callback Test Plugin";
+
+        /// <inheritdoc/>
         public bool SupportsSettings => true;
+
+        /// <inheritdoc/>
         public bool ShowModal => true;
+
+        /// <inheritdoc/>
         public Form SettingsWindow => new CallbacktestForm();
 
+        /// <inheritdoc/>
         public void TestModsCallback()
         {
             SettingsFile.Settingsxml.ReopenFile();
