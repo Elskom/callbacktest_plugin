@@ -11,7 +11,6 @@ image:
 - Visual Studio 2017
 configuration: Release
 platform: Any CPU
-cache: externals/Els_kom_new
 assembly_info:
   patch: true
   file: AssemblyInfo.*
@@ -19,7 +18,7 @@ assembly_info:
   assembly_file_version: "{version}"
   assembly_informational_version: "{version}"
 before_build:
-- ps: ./update-externals.ps1
+- ps: nuget restore
 build:
   project: callbacktest_plugin.sln
   parallel: true
